@@ -1,17 +1,16 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { CustomComponent } from "./components/CustomComponent";
+import { RouterProvider, Route } from "react-router-dom";
 import { theme } from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
+import { router } from "./router";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <CustomComponent />
+        <RouterProvider router={router} />
       </ThemeProvider>
     </div>
   );
