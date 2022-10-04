@@ -2,7 +2,7 @@ import Button, { ButtonProps } from "@mui/material/Button";
 import { alpha, styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 
-export function GradientButton({ children }) {
+export function GradientButton({ children, href }: ButtonProps) {
   const theme = useTheme();
 
   const _button = styled(Button)<ButtonProps>(({ theme }) => ({
@@ -31,5 +31,9 @@ export function GradientButton({ children }) {
     // },
   }));
 
-  return <_button variant="contained">{children}</_button>;
+  return (
+    <_button href={href} variant="contained">
+      {children}
+    </_button>
+  );
 }
