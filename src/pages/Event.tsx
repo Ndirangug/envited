@@ -1,16 +1,12 @@
-import { useState } from "react";
 import eventImage from "../assets/birthday_cake.png";
 import { Box, Typography, Paper } from "@mui/material";
 import { ImLocation, ImCalendar } from "react-icons/im";
 import { useTheme } from "@mui/material/styles";
+import { state } from "../state";
+import { useState } from "react";
 
 export default function Event() {
   const theme = useTheme();
-  const eventName = "Birthday Bash";
-  const host = "George";
-  const startTime = new Date();
-  const endTime = new Date(startTime.getTime() + 1000 * 60 * 60 * 2);
-  const streetName = "123 Main St";
 
   const timeoptions = {
     month: "long",
@@ -22,7 +18,11 @@ export default function Event() {
 
   return (
     <>
-      <Box width={"100%"} component="img" src={eventImage}></Box>
+      <Box
+        width={"100%"}
+        component="img"
+        src={URL.createObjectURL(state.photo)}
+      ></Box>
 
       <Box id="event-details" px="1.5em" pt="1em">
         <Box id="title" mb="2em">
@@ -31,7 +31,7 @@ export default function Event() {
             color={theme.palette.primary.main}
             variant="h4"
           >
-            {eventName}
+            {state.eventName}
           </Typography>
           <Typography
             fontWeight={400}
@@ -41,7 +41,7 @@ export default function Event() {
           >
             Hosted by{" "}
             <Box component="span" fontWeight={600}>
-              {host}
+              {state.host}
             </Box>
           </Typography>
         </Box>
@@ -68,7 +68,7 @@ export default function Event() {
               color={theme.palette.primary.main}
             >
               {`${new Intl.DateTimeFormat("en-GB", timeoptions).format(
-                startTime
+                state.startTime
               )}`.replace("at", "")}
             </Typography>
             <Typography
@@ -81,7 +81,7 @@ export default function Event() {
               {`${new Intl.DateTimeFormat("en-GB", {
                 ...timeoptions,
                 timeZoneName: "shortOffset",
-              }).format(endTime)}`.replace("at", "")}
+              }).format(state.endTime)}`.replace("at", "")}
             </Typography>
           </Box>
         </Box>
@@ -113,7 +113,7 @@ export default function Event() {
               fontWeight={400}
               color={theme.palette.grey["900"]}
             >
-              {streetName}
+              {state.location}
             </Typography>
           </Box>
         </Box>
